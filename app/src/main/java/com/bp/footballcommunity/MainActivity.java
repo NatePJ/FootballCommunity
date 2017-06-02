@@ -3,6 +3,7 @@ package com.bp.footballcommunity;
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.bp.footballcommunity.adapters.FocusAdapter;
 import com.bp.footballcommunity.items.ItemFocus;
+import com.bp.footballcommunity.news.NewsBitmap;
 import com.bp.footballcommunity.news.NewsFocus;
 import com.bp.footballcommunity.utilities.NewsToItemFocus;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private RecyclerView mRecyclerView;
     private Toolbar mToolbar;
+    private TabLayout mTabLayout;
     private ArrayList<Contact> contacts;
     private ArrayList<ItemFocus> mItemFocuses;
     private ArrayList<NewsFocus> mNewsFocuses = new ArrayList<NewsFocus>();
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolBar);
         mRecyclerView = (RecyclerView) findViewById(R.id.rvToDoList);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tablayout);
 
         /**
          * 初始化列表
@@ -42,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         contacts = Contact.createContactsList(5);
         contacts.addAll(Contact.createContactsList(30));
 
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage,"hello","yes we are",R.drawable.body_focus_image_test));
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage,"hello",R.drawable.body_focus_image_test));
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage,"hello","yes we are"));
+        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test, NewsBitmap.mBitmap));
+        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test,NewsBitmap.mBitmap));
+        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are",NewsBitmap.mBitmap));
         mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
 
         /**

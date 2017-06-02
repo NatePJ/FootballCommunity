@@ -1,5 +1,6 @@
 package com.bp.footballcommunity.news;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.util.Objects;
@@ -14,24 +15,28 @@ public class NewsFocus {
     private String footballTimeText = null;
     private int footballTimeImageId = 0;
     private int newsType = 0;
+    private Bitmap bitmap;
 
-    public NewsFocus(int headImageId,String userName,String footballTimeText,int footballTimeImageId){
+    public NewsFocus(int headImageId,String userName,String footballTimeText,int footballTimeImageId,Bitmap bitmap){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
         this.footballTimeImageId = footballTimeImageId;
+        this.bitmap = bitmap;
         Log.d(TAG,"1.1");
     }
-    public NewsFocus(int headImageId,String userName,String footballTimeText){
+    public NewsFocus(int headImageId,String userName,String footballTimeText,Bitmap bitmap){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
+        this.bitmap = bitmap;
         Log.d(TAG,"1.2");
     }
-    public NewsFocus(int headImageId,String userName,int footballTimeImageId){
+    public NewsFocus(int headImageId,String userName,int footballTimeImageId,Bitmap bitmap){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeImageId = footballTimeImageId;
+        this.bitmap = bitmap;
         Log.d(TAG,"1.3");
     }
 
@@ -55,6 +60,10 @@ public class NewsFocus {
         return footballTimeImageId;
     }
 
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
     /**
      * setter
      * @param headImageId
@@ -73,6 +82,10 @@ public class NewsFocus {
 
     public void setFootballTimeImageId(int footballTimeImageId) {
         this.footballTimeImageId = footballTimeImageId;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     // 确定是什么类型

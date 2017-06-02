@@ -35,4 +35,8 @@ dependencies {
     compile "com.android.support:transition:${supportLibVersion}"
     compile "com.android.support:support-annotations:${supportLibVersion}"
     compile files('libs/commons-codec-1.6.jar')
+
+//    //butterknife
+//    compile 'com.jakewharton:butterknife:7.0.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:7.0.0'
 }

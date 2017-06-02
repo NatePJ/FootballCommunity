@@ -1,5 +1,7 @@
 package com.bp.footballcommunity.items;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by BP on 2017/5/31.
  */
@@ -11,7 +13,7 @@ public class ItemFocus {
     private String text;
     private int imageSource;
     private int imageComment;
-    private int imageLike;
+    private Bitmap imageLike;
 
     /**
      * getter
@@ -41,7 +43,7 @@ public class ItemFocus {
         return imageComment;
     }
 
-    public int getImageLike() {
+    public Bitmap getImageLike() {
         return imageLike;
     }
 
@@ -73,7 +75,7 @@ public class ItemFocus {
         this.imageComment = imageComment;
     }
 
-    public void setImageLike(int imageLike) {
+    public void setImageLike(Bitmap imageLike) {
         this.imageLike = imageLike;
     }
 }

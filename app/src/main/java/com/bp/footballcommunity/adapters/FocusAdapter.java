@@ -92,9 +92,7 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                 ImageButton commentFocusButton = holder.commentFocusButton;
                 commentFocusButton.setImageResource(itemFocus.getImageComment());
                 ImageButton likeFocusButton = holder.likeFocusButton;
-//                likeFocusButton.setImageResource(itemFocus.getImageLike());
-                Uri imageUri = Uri.parse("http://localhost:8080/SSHProject/WebContent/WEB-INF/pic/like_be_touch.png");
-                likeFocusButton.setImageURI(imageUri);
+                likeFocusButton.setImageBitmap(itemFocus.getImageLike());
                 break;
         }
     }
