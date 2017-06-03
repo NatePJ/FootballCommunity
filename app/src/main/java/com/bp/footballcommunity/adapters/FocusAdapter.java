@@ -92,7 +92,7 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                 ImageButton commentFocusButton = holder.commentFocusButton;
                 commentFocusButton.setImageResource(itemFocus.getImageComment());
                 ImageButton likeFocusButton = holder.likeFocusButton;
-                likeFocusButton.setImageBitmap(itemFocus.getImageLike());
+                likeFocusButton.setImageResource(R.drawable.like_not_touch);
                 break;
         }
     }
@@ -109,13 +109,13 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
     /**
      * 监听器
      */
-    private OnItemClickListener listener;
-    public interface OnItemClickListener{
-        void onItemClick(View itemView,int position);
-    }
-    public void setOnItemClickListener(OnItemClickListener listener){
-        this.listener = listener;
-    }
+//    private OnItemClickListener listener;
+//    public interface OnItemClickListener{
+//        void onItemClick(View itemView,int position);
+//    }
+//    public void setOnItemClickListener(OnItemClickListener listener){
+//        this.listener = listener;
+//    }
 
     /**
      * ViewHolder
@@ -157,17 +157,20 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
             }
             this.context = getContext();
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(itemView,position);
-                        }
-                    }
-                }
-            });
+            /**
+             * 监听器
+             */
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if(listener != null){
+//                        int position = getAdapterPosition();
+//                        if(position != RecyclerView.NO_POSITION){
+//                            listener.onItemClick(itemView,position);
+//                        }
+//                    }
+//                }
+//            });
         }
     }
 }

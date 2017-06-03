@@ -97,9 +97,11 @@ public class FocusFragment extends Fragment {
             /**
              * 开启线程
              */
-            mGetPictureThread = new GetPictureThread(getActivity());
-            mGetPictureThread.start();
-
+//            mGetPictureThread = new GetPictureThread(getActivity());
+//            mGetPictureThread.start();
+            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test));
+            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test));
+            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are"));
             /**
              * 初始化列表
              */
@@ -130,9 +132,9 @@ public class FocusFragment extends Fragment {
                     /**
                      * 初始化列表
                      */
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test,NewsBitmap.mBitmap));
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test,NewsBitmap.mBitmap));
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are",NewsBitmap.mBitmap));
+                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test));
+                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test));
+                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are"));
                     mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
                     /**
                      * 设置适配器

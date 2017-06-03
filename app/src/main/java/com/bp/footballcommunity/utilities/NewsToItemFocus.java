@@ -112,7 +112,7 @@ public class NewsToItemFocus {
         buttonItem.setStyleType(Constant.BUTTON);
         //设置显示值
         buttonItem.setImageComment(R.drawable.comment);
-        buttonItem.setImageLike(newsFocus.getBitmap());
+//        buttonItem.setImageLike(newsFocus.getBitmap());
         Log.d(TAG,"2.4");
         //返回Item
         return buttonItem;

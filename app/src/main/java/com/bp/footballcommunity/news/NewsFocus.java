@@ -41,6 +41,29 @@ public class NewsFocus {
     }
 
     /**
+     * 不联网构造方法
+     */
+
+    public NewsFocus(int headImageId,String userName,String footballTimeText,int footballTimeImageId){
+        this.headImageId = headImageId;
+        this.userName = userName;
+        this.footballTimeText = footballTimeText;
+        this.footballTimeImageId = footballTimeImageId;
+        Log.d(TAG,"1.1");
+    }
+    public NewsFocus(int headImageId,String userName,String footballTimeText){
+        this.headImageId = headImageId;
+        this.userName = userName;
+        this.footballTimeText = footballTimeText;
+        Log.d(TAG,"1.2");
+    }
+    public NewsFocus(int headImageId,String userName,int footballTimeImageId){
+        this.headImageId = headImageId;
+        this.userName = userName;
+        this.footballTimeImageId = footballTimeImageId;
+        Log.d(TAG,"1.3");
+    }
+    /**
      * getter
      * @return
      */

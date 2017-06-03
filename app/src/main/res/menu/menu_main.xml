@@ -1,15 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/miCompose"
+        android:id="@+id/action_favorite"
         android:icon="@drawable/ic_compose"
         app:showAsAction="ifRoom"
         android:title="Compose">
     </item>
     <item
-        android:id="@+id/miProfile"
+        android:id="@+id/action_settings"
         android:icon="@drawable/ic_profile"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="never"
         android:title="Profile">
     </item>
 </menu>
