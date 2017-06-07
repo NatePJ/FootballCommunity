@@ -234,6 +234,7 @@ public class FocusFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //
             return pic;
         }
 
