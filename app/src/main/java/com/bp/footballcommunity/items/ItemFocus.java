@@ -13,7 +13,7 @@ public class ItemFocus {
     private String text;
     private int imageSource;
     private int imageComment;
-    private Bitmap imageLike;
+    private Bitmap mBitmap;
 
     /**
      * getter
@@ -43,8 +43,8 @@ public class ItemFocus {
         return imageComment;
     }
 
-    public Bitmap getImageLike() {
-        return imageLike;
+    public Bitmap getBitmap() {
+        return mBitmap;
     }
 
     /**
@@ -75,7 +75,7 @@ public class ItemFocus {
         this.imageComment = imageComment;
     }
 
-    public void setImageLike(Bitmap imageLike) {
-        this.imageLike = imageLike;
+    public void setBitmap(Bitmap bitmap) {
+        this.mBitmap = bitmap;
     }
 }

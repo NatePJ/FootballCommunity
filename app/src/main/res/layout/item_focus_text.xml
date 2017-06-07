@@ -3,15 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="55dp"
-    android:paddingTop="20dp"
+    android:paddingLeft="60dp"
+    android:paddingTop="10dp"
     android:paddingRight="20dp">
 
     <TextView
         android:id="@+id/focus_body_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:textColor="#000000"
         android:text="你们好吗，我很好你们好吗，我很好你们好吗，我很好你们好吗，我很好你们好吗，我很好"/>
 
 </LinearLayout>

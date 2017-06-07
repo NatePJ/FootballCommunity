@@ -50,7 +50,7 @@ public class NewsToItemFocus {
         //设置显示位置
         headItem.setStyleType(Constant.HEAD);
         //设置显示值
-        headItem.setImageSource(newsFocus.getHeadImageId());
+        headItem.setBitmap(newsFocus.getHeadImageId());
         headItem.setText(newsFocus.getUserName());
         Log.d(TAG,"2.1");
         //返回Item
@@ -91,7 +91,7 @@ public class NewsToItemFocus {
         //设置显示位置
         bodyImageItem.setStyleType(Constant.BODYIMAGE);
         //设置显示值
-        bodyImageItem.setImageSource(newsFocus.getFootballTimeImageId());
+        bodyImageItem.setBitmap(newsFocus.getFootballTimeImageId());
         Log.d(TAG,"2.3");
         //返回Item
         return bodyImageItem;
@@ -112,7 +112,7 @@ public class NewsToItemFocus {
         buttonItem.setStyleType(Constant.BUTTON);
         //设置显示值
         buttonItem.setImageComment(R.drawable.comment);
-//        buttonItem.setImageLike(newsFocus.getBitmap());
+        buttonItem.setText(newsFocus.getThumbsUp());
         Log.d(TAG,"2.4");
         //返回Item
         return buttonItem;

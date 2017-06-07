@@ -3,6 +3,7 @@ package com.bp.footballcommunity.adapters;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHolder>{
     private static final String TAG = "FocusAdapter";
+    private static final String thumbsUpJudge = "0";
     private List<ItemFocus> mItemFocuses;
     private Context mContext;
 
@@ -76,7 +78,7 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
         switch(holder.getItemViewType()){
             case Constant.HEAD:
                 ImageView headFocusImage = holder.headFocusImage;
-                headFocusImage.setImageResource(itemFocus.getImageSource());
+                headFocusImage.setImageBitmap(itemFocus.getBitmap());
                 TextView headFocusText = holder.headFocusText;
                 headFocusText.setText(itemFocus.getText());
                 break;
@@ -86,13 +88,19 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                 break;
             case Constant.BODYIMAGE:
                 ImageView bodyFocusImage = holder.bodyFocusImage;
-                bodyFocusImage.setImageResource(itemFocus.getImageSource());
+                bodyFocusImage.setImageBitmap(itemFocus.getBitmap());
                 break;
             case Constant.BUTTON:;
                 ImageButton commentFocusButton = holder.commentFocusButton;
                 commentFocusButton.setImageResource(itemFocus.getImageComment());
                 ImageButton likeFocusButton = holder.likeFocusButton;
-                likeFocusButton.setImageResource(R.drawable.like_not_touch);
+                if(itemFocus.getText().toString() == thumbsUpJudge){
+                    Log.d("thumbsUp_not",itemFocus.getText().toString());
+                    likeFocusButton.setImageResource(R.drawable.like_not_touch);
+                }else {
+                    Log.d("thumbsUp_yes",itemFocus.getText().toString());
+                    likeFocusButton.setImageResource(R.drawable.like_be_touch);
+                }
                 break;
         }
     }

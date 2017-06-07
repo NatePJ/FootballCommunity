@@ -32,6 +32,7 @@ public class ParentActivity extends AppCompatActivity{
     private ViewPager mViewPager = null;
     private ParentFragmentPagerAdapter mParentFragmentPagerAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="20dp"
+    android:paddingTop="10dp"
     android:paddingLeft="55dp">
 
-    <RelativeLayout
-        android:id="@+id/r1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageButton
-            android:id="@+id/button_focus_comment"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerInside"
-            android:background="@null"/>
-    </RelativeLayout>
+    <ImageButton
+        android:id="@+id/button_focus_comment"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/comment"
+        android:background="@null"/>
+    <ImageButton
+        android:id="@+id/button_focus_like"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/like_not_touch"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="10dp"
+        android:background="@null"/>
 
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/r1"
-        android:paddingLeft="20dp">
-
-        <ImageButton
-            android:id="@+id/button_focus_like"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="centerInside"
-            android:background="@null"/>
-
-    </RelativeLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

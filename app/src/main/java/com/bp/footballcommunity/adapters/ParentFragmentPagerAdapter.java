@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.bp.footballcommunity.PageFragment;
+import com.bp.footballcommunity.fragments.AboutFootballFragment;
 import com.bp.footballcommunity.fragments.FocusFragment;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ParentFragmentPagerAdapter extends FragmentPagerAdapter{
             case 0:
                 return FocusFragment.newInstance(position + 1);
             case 1:
-                return PageFragment.newInstance(position + 1);
+                return AboutFootballFragment.newInstance(position + 1);
             case 2:
                 return PageFragment.newInstance(position + 1);
             case 3:

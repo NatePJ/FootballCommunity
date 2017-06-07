@@ -10,33 +10,33 @@ import java.util.Objects;
  */
 public class NewsFocus {
     private static final String TAG = "NewsFocus";
-    private int headImageId = 0;
+    private Bitmap headImageId = null;
     private String userName = null;
     private String footballTimeText = null;
-    private int footballTimeImageId = 0;
+    private Bitmap footballTimeImageId = null;
     private int newsType = 0;
-    private Bitmap bitmap;
+    private String thumbsUp;
 
-    public NewsFocus(int headImageId,String userName,String footballTimeText,int footballTimeImageId,Bitmap bitmap){
+    public NewsFocus(Bitmap headImageId,String userName,String footballTimeText,Bitmap footballTimeImageId,String thumbsUp){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
         this.footballTimeImageId = footballTimeImageId;
-        this.bitmap = bitmap;
+        this.thumbsUp = thumbsUp;
         Log.d(TAG,"1.1");
     }
-    public NewsFocus(int headImageId,String userName,String footballTimeText,Bitmap bitmap){
+    public NewsFocus(Bitmap headImageId,String userName,String footballTimeText,String thumbsUp){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
-        this.bitmap = bitmap;
+        this.thumbsUp = thumbsUp;
         Log.d(TAG,"1.2");
     }
-    public NewsFocus(int headImageId,String userName,int footballTimeImageId,Bitmap bitmap){
+    public NewsFocus(Bitmap headImageId,String userName,Bitmap footballTimeImageId,String thumbsUp){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeImageId = footballTimeImageId;
-        this.bitmap = bitmap;
+        this.thumbsUp = thumbsUp;
         Log.d(TAG,"1.3");
     }
 
@@ -44,20 +44,20 @@ public class NewsFocus {
      * 不联网构造方法
      */
 
-    public NewsFocus(int headImageId,String userName,String footballTimeText,int footballTimeImageId){
+    public NewsFocus(Bitmap headImageId,String userName,String footballTimeText,Bitmap footballTimeImageId){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
         this.footballTimeImageId = footballTimeImageId;
         Log.d(TAG,"1.1");
     }
-    public NewsFocus(int headImageId,String userName,String footballTimeText){
+    public NewsFocus(Bitmap headImageId,String userName,String footballTimeText){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeText = footballTimeText;
         Log.d(TAG,"1.2");
     }
-    public NewsFocus(int headImageId,String userName,int footballTimeImageId){
+    public NewsFocus(Bitmap headImageId,String userName,Bitmap footballTimeImageId){
         this.headImageId = headImageId;
         this.userName = userName;
         this.footballTimeImageId = footballTimeImageId;
@@ -67,7 +67,7 @@ public class NewsFocus {
      * getter
      * @return
      */
-    public int getHeadImageId() {
+    public Bitmap getHeadImageId() {
         return headImageId;
     }
 
@@ -79,19 +79,18 @@ public class NewsFocus {
         return footballTimeText;
     }
 
-    public int getFootballTimeImageId() {
+    public Bitmap getFootballTimeImageId() {
         return footballTimeImageId;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public String getThumbsUp(){
+        return thumbsUp;
     }
-
     /**
      * setter
      * @param headImageId
      */
-    public void setHeadImageId(int headImageId) {
+    public void setHeadImageId(Bitmap headImageId) {
         this.headImageId = headImageId;
     }
 
@@ -103,21 +102,21 @@ public class NewsFocus {
         this.footballTimeText = footballTimeText;
     }
 
-    public void setFootballTimeImageId(int footballTimeImageId) {
+    public void setFootballTimeImageId(Bitmap footballTimeImageId) {
         this.footballTimeImageId = footballTimeImageId;
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setThumbsUp(String bitmap) {
+        this.thumbsUp = bitmap;
     }
 
     // 确定是什么类型
     public int getNewsType(){
-        if((footballTimeText != null) && footballTimeImageId == 0){
+        if((footballTimeText != null) && footballTimeImageId == null){
             this.newsType = 1;
-        }else if(footballTimeText==null&&footballTimeImageId!=0){
+        }else if(footballTimeText==null&&footballTimeImageId!=null){
             this.newsType = 2;
-        }else if(footballTimeText != null&&footballTimeImageId!=0){
+        }else if(footballTimeText != null&&footballTimeImageId!=null){
             this.newsType = 3;
         }
         return newsType;

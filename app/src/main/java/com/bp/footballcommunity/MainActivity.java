@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         contacts = Contact.createContactsList(5);
         contacts.addAll(Contact.createContactsList(30));
 
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test, NewsBitmap.mBitmap));
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test,NewsBitmap.mBitmap));
-        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are",NewsBitmap.mBitmap));
+//        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test, NewsBitmap.mBitmap));
+//        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test,NewsBitmap.mBitmap));
+//        mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are",NewsBitmap.mBitmap));
         mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
 
         /**

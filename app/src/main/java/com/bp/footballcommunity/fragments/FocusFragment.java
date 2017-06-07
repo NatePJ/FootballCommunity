@@ -21,7 +21,9 @@ import com.bp.footballcommunity.items.ItemFocus;
 import com.bp.footballcommunity.news.NewsBitmap;
 import com.bp.footballcommunity.news.NewsFocus;
 //import com.bp.footballcommunity.threads.GetPictureThread;
+//import com.bp.footballcommunity.threads.FocusThread;
 import com.bp.footballcommunity.utilities.Constant;
+import com.bp.footballcommunity.utilities.JsonToList;
 import com.bp.footballcommunity.utilities.NewsToItemFocus;
 
 import org.apache.http.HttpEntity;
@@ -41,15 +43,18 @@ import java.util.ArrayList;
 public class FocusFragment extends Fragment {
     private static final String TAG = "FocusFragment";
     public static final String ARG_PAGE = "ARG_PAGE";
+
     private View v = null;// 缓存Fragment view
     private int mPage;
+    public int test = 1;
     //控件是否已经初始化
     private boolean isCreateView = false;
     //是否已经加载过数据
     private boolean isLoadData = false;
 
-    private GetPictureThread mGetPictureThread;
+    private static GetPictureThread mGetPictureThread;
 //    public Handler mainHandler;
+    public FocusThread mFocusThread;
     /**
      * 定义
      */
@@ -99,9 +104,12 @@ public class FocusFragment extends Fragment {
              */
 //            mGetPictureThread = new GetPictureThread(getActivity());
 //            mGetPictureThread.start();
-            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test));
-            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test));
-            mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are"));
+            mFocusThread = new FocusThread();
+            mFocusThread.start();
+
+//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage3, "李知恩", "아름다운 리 사은", R.drawable.body_focus_image_test));
+//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage4, "最速", R.drawable.body_focus_image_test2));
+//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage5, "hello", "yes we are"));
             /**
              * 初始化列表
              */
@@ -124,7 +132,25 @@ public class FocusFragment extends Fragment {
         }
         return v;
     }
-    public Handler mainHandler = new Handler(){
+
+    public Handler messageHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case Constant.msg_connect:
+                    Log.d("MainActivityConn:","msg_success");
+                    int i = 0;
+                    mGetPictureThread = new GetPictureThread();
+                    mGetPictureThread.start();
+                    break;
+                case Constant.msg_error:
+                    Log.d("MainActivityConn:","msg_error");
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+    public Handler picHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what){
@@ -132,9 +158,14 @@ public class FocusFragment extends Fragment {
                     /**
                      * 初始化列表
                      */
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are", R.drawable.body_focus_image_test));
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", R.drawable.body_focus_image_test));
-                    mNewsFocuses.add(new NewsFocus(R.drawable.headimage, "hello", "yes we are"));
+                    for(int i = 0;i < Constant.headBitmap.size();i++){
+                        mNewsFocuses.add(new NewsFocus(
+                                Constant.headBitmap.get(i),
+                                Constant.footballUserName.get(i),
+                                Constant.messageText.get(i),
+                                Constant.bodyBitmap.get(i),
+                                Constant.thumbsUp.get(i)));
+                    }
                     mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
                     /**
                      * 设置适配器
@@ -148,19 +179,19 @@ public class FocusFragment extends Fragment {
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                     layoutManager.scrollToPosition(0);
                     mRecyclerView.setLayoutManager(layoutManager);
-                    Log.d(TAG,"msg_success");
+                    Log.d("MainActivityConn:","pic_success");
                     break;
                 case  Constant.msg_error:
-                    Log.d("MainActivityConn:","msg_error");
+                    Log.d("MainActivityConn:","pic_error");
                     break;
             }
             super.handleMessage(msg);
         }
 
     };
-    public Handler getHandler(){
-        return this.mainHandler;
-    }
+//    public Handler getHandler(){
+//        return this.picHandler;
+//    }
 
     public class GetPictureThread extends Thread{
         /**
@@ -168,44 +199,41 @@ public class FocusFragment extends Fragment {
          */
         private Message msg;
         private Bundle bdl;
+        private int position;
         private Context mContext;
         private NewsBitmap mNewsBitmap = new NewsBitmap();
 
         /**
          * 构造方法
          */
-        public GetPictureThread(Context context){
-            this.mContext = context;
+        public GetPictureThread(){
         }
 
         /**
          * run方法
          */
         public void run(){
-            mNewsBitmap.setBitmap(getBitmapFromServer("http://10.249.33.137:8080/SSHProject/pic/like_be_touch.png"));
+            for(int i = 0; i < Constant.footballUserName.size();i++) {
+                Constant.headBitmap.add(getBitmapFromServer(Constant.footballUserHeadImage.get(i).toString()));
+                Constant.bodyBitmap.add(getBitmapFromServer(Constant.messageImage.get(i).toString()));
+            }
             sendMessage(Constant.msg_connect,"");
         }
 
         public Bitmap getBitmapFromServer(String imagePath) {
-            Log.d("testconn:","21");
-            HttpGet get = new HttpGet(imagePath);
+            HttpGet get = new HttpGet(Constant.picHost + imagePath);
             HttpClient client = new DefaultHttpClient();
             Bitmap pic = null;
-            Log.d("testconn:","22");
             try {
                 HttpResponse response = client.execute(get);
                 HttpEntity entity = response.getEntity();
-                Log.d("testconn:","23");
                 InputStream is = entity.getContent();
-
                 pic = BitmapFactory.decodeStream(is);   // 关键是这句代码
-                Log.d("testconn:","24");
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Log.d("testconn:","25");
             return pic;
         }
 
@@ -216,10 +244,66 @@ public class FocusFragment extends Fragment {
             bdl.putString("1",s);
             msg.what = x;
             msg.setData(bdl);
-            mainHandler.sendMessage(msg);
+            picHandler.sendMessage(msg);
         }
     }
 
+
+    /**
+     * FocusThread
+     */
+    public class FocusThread extends Thread{
+        private Message msg;
+        private Bundle bdl;
+
+        public void run(){
+            InputStream resIS;
+            StringBuilder resSB;
+            String resStr;
+
+            resIS = getIS(Constant.strURL);
+            if (resIS == null){
+                return;
+            }else{
+                resSB = JsonToList.isTosb(resIS);
+                resStr = resSB.toString();
+                try{
+                    JsonToList.jsonTolist(resStr);
+                    sendMessage(Constant.msg_connect,"");
+                }catch (Exception e){
+                    e.printStackTrace();
+                    sendMessage(Constant.msg_error,e.toString());
+                }
+            }
+        }
+
+        private InputStream getIS(String url) {
+            InputStream is = null;
+            try{
+                //取得默认HttpClien实例
+                HttpClient hc = new DefaultHttpClient();
+                //连接到服务器
+                HttpResponse hr = hc.execute(new HttpGet(url));
+                //获取数据内容
+                is = hr.getEntity().getContent();
+            }catch(Exception e){
+                e.printStackTrace();
+                sendMessage(Constant.msg_error,e.toString());
+            }
+            Log.d("testconn:","2.8");
+            return is;
+        }
+        //发送消息用于更新UI
+        public void sendMessage(int x, String s){
+            msg = new Message();
+            bdl = new Bundle();
+            bdl.putString("1",s);
+            msg.what = x;
+            msg.setData(bdl);
+            messageHandler.sendMessage(msg);
+
+        }
+    }
     //此方法在控件初始化前调用，所以不能在此方法中直接操作控件会出现空指针
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
