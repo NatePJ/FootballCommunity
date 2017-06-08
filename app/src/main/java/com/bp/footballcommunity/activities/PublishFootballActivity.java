@@ -157,6 +157,7 @@ public class PublishFootballActivity extends Activity{
 //                    cursor.moveToFirst();
                     // 最后根据索引值获取图片路径
                     //TODO 修改
+//                    Log.d(TAG,)
 //                    photoPath = cursor.getString(column_index);
                     photoPath = getRealPathFromURI(uri);
                     mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);

@@ -22,7 +22,8 @@ import java.util.List;
  */
 public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHolder>{
     private static final String TAG = "FocusAdapter";
-    private static final String thumbsUpJudge = "0";
+    private static final String thumbsUpJudgeY = "0";
+    private static final String thumbsUpJudgeN = "1";
     private List<ItemFocus> mItemFocuses;
     private Context mContext;
 
@@ -94,13 +95,23 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                 ImageButton commentFocusButton = holder.commentFocusButton;
                 commentFocusButton.setImageResource(itemFocus.getImageComment());
                 ImageButton likeFocusButton = holder.likeFocusButton;
-                if(itemFocus.getText().toString() == thumbsUpJudge){
-                    Log.d("thumbsUp_not",itemFocus.getText().toString());
-                    likeFocusButton.setImageResource(R.drawable.like_not_touch);
-                }else {
-                    Log.d("thumbsUp_yes",itemFocus.getText().toString());
-                    likeFocusButton.setImageResource(R.drawable.like_be_touch);
+                switch (itemFocus.getText().toString()){
+                    case thumbsUpJudgeY:
+                        Log.d("thumbsUp_not",itemFocus.getText().toString());
+                        likeFocusButton.setImageResource(R.drawable.like_not_touch);
+                        break;
+                    case thumbsUpJudgeN:
+                        Log.d("thumbsUp_yes",itemFocus.getText().toString());
+                        likeFocusButton.setImageResource(R.drawable.like_be_touch);
+                        break;
                 }
+//                if(itemFocus.getText().toString() == "0"){
+//                    Log.d("thumbsUp_not",itemFocus.getText().toString());
+//                    likeFocusButton.setImageResource(R.drawable.like_not_touch);
+//                }else {
+//                    Log.d("thumbsUp_yes",itemFocus.getText().toString());
+//                    likeFocusButton.setImageResource(R.drawable.like_be_touch);
+//                }
                 break;
         }
     }
