@@ -47,6 +47,7 @@ public class NewsToItemFocus {
 
         //设置消息类型为文本或图片
         headItem.setNewsType(newsFocus.getNewsType());
+        headItem.setMessageId(newsFocus.getMessageId());
         //设置显示位置
         headItem.setStyleType(Constant.HEAD);
         //设置显示值
@@ -68,6 +69,7 @@ public class NewsToItemFocus {
 
         //设置消息类型为文本或图片
         bodyTextItem.setNewsType(newsFocus.getNewsType());
+        bodyTextItem.setMessageId(newsFocus.getMessageId());
         //设置显示位置
         bodyTextItem.setStyleType(Constant.BODYTEXT);
         //设置显示值
@@ -88,6 +90,7 @@ public class NewsToItemFocus {
 
         //设置消息类型
         bodyImageItem.setNewsType(newsFocus.getNewsType());
+        bodyImageItem.setMessageId(newsFocus.getMessageId());
         //设置显示位置
         bodyImageItem.setStyleType(Constant.BODYIMAGE);
         //设置显示值
@@ -108,6 +111,7 @@ public class NewsToItemFocus {
 
         //设置消息类型
         buttonItem.setNewsType(newsFocus.getNewsType());
+        buttonItem.setMessageId(newsFocus.getMessageId());
         //设置显示位置
         buttonItem.setStyleType(Constant.BUTTON);
         //设置显示值

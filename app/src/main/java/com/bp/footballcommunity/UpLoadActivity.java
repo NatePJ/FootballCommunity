@@ -75,13 +75,14 @@ public class UpLoadActivity extends Activity {
                 /*********do something ...... ********/
                 /*上传部分*/
                 //找到上传的靶文件（此时的靶文件应该是我们刚刚下载到的文件）
-                File file = new File(UpLoadActivity.this.getFilesDir().getPath(), "file.png");
-
+//                File file = new File(UpLoadActivity.this.getFilesDir().getPath(),"file.png");
+                File file = new File(UpLoadActivity.this.getFilesDir().getPath(),"file.png");
                 Log.d("downloadpicfile",UpLoadActivity.this.getFilesDir().getPath());
                 //封装待发送参数（以键值对形式），即靶文件，内容类型设置为multipart/form-data
                 RequestParams params = new RequestParams();
                 try {
                     params.put("file", file, "multipart/form-data");
+                    params.put("filename","file2.png");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

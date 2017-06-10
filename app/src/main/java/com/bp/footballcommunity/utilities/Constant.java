@@ -11,10 +11,15 @@ import java.util.List;
 public class Constant {
 
     // 访问的URL
-    public static String strHost = new String("http://10.249.33.90:8080/SSHProject/");
-    public static String picHost = new String("http://10.249.33.90:8080/SSHProject/pic/");
-    public static String strAct = new String("queryalluser");
-    public static String strURL = strHost + strAct;
+    public static String strHost = new String("http://192.168.137.1:8080/SSHProject/");
+    public static String picHost = new String("http://192.168.137.1:8080/SSHProject/pic/");
+    public static String spaceHost = new String("http://192.168.137.1:8080/SSHProject/space/");
+    public static String strAct1 = new String("queryalluser");
+    public static String strAct2 = new String("uploadthumbsup");
+    public static String strAct3 = new String("uploadpicture");
+    public static String strURL = strHost + strAct1;
+    public static String URLThumbsUp = strHost + strAct2;
+    public static String URLPicture = strHost + strAct3;
 
 
     public static final int HEAD = 0;
@@ -33,6 +38,7 @@ public class Constant {
     public static final int msg_con_stop = 4;
 
     // 列表
+    public static List<String> messageId = new ArrayList();
     public static List<String> footballUserName = new ArrayList();
     public static List<String> footballUserHeadImage = new ArrayList();
     public static List<String> messageText = new ArrayList();

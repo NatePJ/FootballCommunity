@@ -40,6 +40,8 @@ public class JsonToList {
         JSONArray jsonUser = jsonObject.getJSONArray("Like");
         Log.d("Util: ","getJSONArray");
         for (int i = 0; i < jsonUser.length(); i++) {
+
+            Constant.messageId.add(i,jsonUser.getJSONObject(i).getString("messageId"));
             Constant.footballUserName.add(i,jsonUser.getJSONObject(i).getString("footballUserName"));
             Log.d("MainActivityConn:",Constant.footballUserName.get(i).toString());
             Constant.footballUserHeadImage.add(i,jsonUser.getJSONObject(i).getString("footballUserHeadImage"));

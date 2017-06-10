@@ -31,6 +31,10 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
         mItemFocuses = itemFocuses;
         mContext = context;
     }
+    public void updateFocusAdapter(Context context, List<ItemFocus> itemFocuses){
+        mItemFocuses = itemFocuses;
+        mContext = context;
+    }
 
     private Context getContext(){
         return mContext;
@@ -94,15 +98,15 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
             case Constant.BUTTON:;
                 ImageButton commentFocusButton = holder.commentFocusButton;
                 commentFocusButton.setImageResource(itemFocus.getImageComment());
-                ImageButton likeFocusButton = holder.likeFocusButton;
+                ImageButton thumbsUpButton = holder.thumbsUpButton;
                 switch (itemFocus.getText().toString()){
                     case thumbsUpJudgeY:
                         Log.d("thumbsUp_not",itemFocus.getText().toString());
-                        likeFocusButton.setImageResource(R.drawable.like_not_touch);
+                        thumbsUpButton.setImageResource(R.drawable.like_not_touch);
                         break;
                     case thumbsUpJudgeN:
                         Log.d("thumbsUp_yes",itemFocus.getText().toString());
-                        likeFocusButton.setImageResource(R.drawable.like_be_touch);
+                        thumbsUpButton.setImageResource(R.drawable.like_be_touch);
                         break;
                 }
 //                if(itemFocus.getText().toString() == "0"){
@@ -128,13 +132,13 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
     /**
      * 监听器
      */
-//    private OnItemClickListener listener;
-//    public interface OnItemClickListener{
-//        void onItemClick(View itemView,int position);
-//    }
-//    public void setOnItemClickListener(OnItemClickListener listener){
-//        this.listener = listener;
-//    }
+    private OnFocusItemClickListener listener;
+    public interface OnFocusItemClickListener{
+        void onItemClick(View itemView,int position);
+    }
+    public void setOnFocusItemClickListener(OnFocusItemClickListener listener){
+        this.listener = listener;
+    }
 
     /**
      * ViewHolder
@@ -148,7 +152,7 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
         private TextView bodyFocusText;
         private ImageView bodyFocusImage;
         private ImageButton commentFocusButton;
-        private ImageButton likeFocusButton;
+        private ImageButton thumbsUpButton;
 
         private Context context;
 
@@ -172,24 +176,24 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                     break;
                 case Constant.BUTTON:
                     commentFocusButton = (ImageButton)itemView.findViewById(R.id.button_focus_comment);
-                    likeFocusButton = (ImageButton)itemView.findViewById(R.id.button_focus_like);
+                    thumbsUpButton = (ImageButton)itemView.findViewById(R.id.button_focus_like);
             }
             this.context = getContext();
 
             /**
              * 监听器
              */
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if(listener != null){
-//                        int position = getAdapterPosition();
-//                        if(position != RecyclerView.NO_POSITION){
-//                            listener.onItemClick(itemView,position);
-//                        }
-//                    }
-//                }
-//            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(itemView,position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

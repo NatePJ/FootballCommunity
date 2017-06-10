@@ -14,6 +14,7 @@ public class ItemFocus {
     private int imageSource;
     private int imageComment;
     private Bitmap mBitmap;
+    private String messageId;
 
     /**
      * getter
@@ -47,6 +48,10 @@ public class ItemFocus {
         return mBitmap;
     }
 
+    public String getMessageId() {
+        return messageId;
+    }
+
     /**
      * setter
      * @param newsType
@@ -77,5 +82,9 @@ public class ItemFocus {
 
     public void setBitmap(Bitmap bitmap) {
         this.mBitmap = bitmap;
+    }
+
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 }

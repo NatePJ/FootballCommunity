@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bp.footballcommunity.R;
 import com.bp.footballcommunity.adapters.FocusAdapter;
@@ -22,9 +23,11 @@ import com.bp.footballcommunity.news.NewsBitmap;
 import com.bp.footballcommunity.news.NewsFocus;
 //import com.bp.footballcommunity.threads.GetPictureThread;
 //import com.bp.footballcommunity.threads.FocusThread;
+import com.bp.footballcommunity.utilities.ChangeItemClick;
 import com.bp.footballcommunity.utilities.Constant;
 import com.bp.footballcommunity.utilities.JsonToList;
 import com.bp.footballcommunity.utilities.NewsToItemFocus;
+import com.bp.footballcommunity.utilities.UploadUtility;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,6 +58,11 @@ public class FocusFragment extends Fragment {
     private static GetPictureThread mGetPictureThread;
 //    public Handler mainHandler;
     public FocusThread mFocusThread;
+
+    /**
+     * 设置适配器
+     */
+    FocusAdapter focusAdapter;
     /**
      * 定义
      */
@@ -99,17 +107,34 @@ public class FocusFragment extends Fragment {
              */
             mRecyclerView = (RecyclerView) v.findViewById(R.id.focus_recyclerview);
             isCreateView = true;
+            mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
+            /**
+             * 设置适配器
+             */
+            focusAdapter = new FocusAdapter(getActivity(), mItemFocuses);
+            focusAdapter.setOnFocusItemClickListener(new FocusAdapter.OnFocusItemClickListener() {
+                @Override
+                public void onItemClick(View itemView, int position) {
+                    String itemText = mItemFocuses.get(position).getText();
+
+                    Toast.makeText(getActivity(),itemText,Toast.LENGTH_SHORT).show();
+                    String newItemText = ChangeItemClick.changeThumbsUpItemText(itemText);
+
+                    //TODO 点击改变
+                    if(itemText != newItemText){
+                        String messageId = mItemFocuses.get(position).getMessageId();
+                        mItemFocuses.get(position).setText(newItemText);
+                        mRecyclerView.setAdapter(focusAdapter);
+                        UploadUtility.uploadThumbsUp(messageId,newItemText);
+                    }
+                }
+            });
+            mRecyclerView.setAdapter(focusAdapter);
             /**
              * 开启线程
              */
-//            mGetPictureThread = new GetPictureThread(getActivity());
-//            mGetPictureThread.start();
             mFocusThread = new FocusThread();
             mFocusThread.start();
-
-//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage3, "李知恩", "아름다운 리 사은", R.drawable.body_focus_image_test));
-//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage4, "最速", R.drawable.body_focus_image_test2));
-//            mNewsFocuses.add(new NewsFocus(R.drawable.headimage5, "hello", "yes we are"));
             /**
              * 初始化列表
              */
@@ -164,13 +189,15 @@ public class FocusFragment extends Fragment {
                                 Constant.footballUserName.get(i),
                                 Constant.messageText.get(i),
                                 Constant.bodyBitmap.get(i),
-                                Constant.thumbsUp.get(i)));
+                                Constant.thumbsUp.get(i),
+                                Constant.messageId.get(i))
+                                );
                     }
                     mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
                     /**
                      * 设置适配器
                      */
-                    FocusAdapter focusAdapter = new FocusAdapter(getActivity(), mItemFocuses);
+                    focusAdapter.updateFocusAdapter(getActivity(), mItemFocuses);
                     mRecyclerView.setAdapter(focusAdapter);
 
                     /**
