@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FootballCommunity</string>
     <string name="about_football">发起约球</string>
+    <item type="id" name="tag_first"/>
+    <item type="id" name="tag_second"/>
+    <string name="date_picker_title">Date of play:</string>
 </resources>

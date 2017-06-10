@@ -177,23 +177,24 @@ public class FocusAdapter extends RecyclerView.Adapter<FocusAdapter.FocusViewHol
                 case Constant.BUTTON:
                     commentFocusButton = (ImageButton)itemView.findViewById(R.id.button_focus_comment);
                     thumbsUpButton = (ImageButton)itemView.findViewById(R.id.button_focus_like);
+                    /**
+                     * 监听器
+                     */
+                    thumbsUpButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(listener != null){
+                                int position = getAdapterPosition();
+                                if(position != RecyclerView.NO_POSITION){
+                                    listener.onItemClick(thumbsUpButton,position);
+                                }
+                            }
+                        }
+                    });
             }
             this.context = getContext();
 
-            /**
-             * 监听器
-             */
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(itemView,position);
-                        }
-                    }
-                }
-            });
+
         }
     }
 }

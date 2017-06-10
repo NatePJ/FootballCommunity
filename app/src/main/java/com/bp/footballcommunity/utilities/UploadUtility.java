@@ -78,4 +78,48 @@ public class UploadUtility {
                 }
         );
     }
+
+    /**
+     *
+     * @param aboutPlayground
+     * @param aboutTime
+     * @param aboutMaxPeople
+     */
+    public static void uploadAboutMessage(String aboutPlayground,String aboutTime,String aboutMaxPeople){
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("aboutPlayground", aboutPlayground);
+        params.put("aboutTime", aboutTime);
+        params.put("aboutMaxpeople", aboutMaxPeople);
+        client.post(Constant.URLAboutMessage, params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String res) {
+                        // called when response HTTP status is "200 OK"
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                    }
+                }
+        );
+    }
+
+    public static void joinAboutFootball(String messageId){
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("messageId", messageId);
+        client.get(Constant.URLJoinAbout, params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String res) {
+                        // called when response HTTP status is "200 OK"
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                        // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+                    }
+                }
+        );
+    }
 }

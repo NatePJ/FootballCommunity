@@ -17,9 +17,16 @@ public class Constant {
     public static String strAct1 = new String("queryalluser");
     public static String strAct2 = new String("uploadthumbsup");
     public static String strAct3 = new String("uploadpicture");
+    public static String strAct4 = new String("queryaboutfootball");
+    public static String strAct5 = new String("uploadaboutmessage");
+    public static String strAct6 = new String("joinaboutfootball");
     public static String strURL = strHost + strAct1;
+    public static String aboutURL = strHost + strAct4;
     public static String URLThumbsUp = strHost + strAct2;
     public static String URLPicture = strHost + strAct3;
+    public static String URLAboutMessage = strHost + strAct5;
+    public static String URLJoinAbout = strHost + strAct6;
+
 
 
     public static final int HEAD = 0;
@@ -47,5 +54,18 @@ public class Constant {
 
     public static List<Bitmap> headBitmap = new ArrayList();
     public static List<Bitmap> bodyBitmap = new ArrayList();
+
+    //约球
+    public static List<String> aboutId = new ArrayList();
+    public static List<String> aboutFootballUserName = new ArrayList();
+    public static List<String> aboutCity = new ArrayList();
+    public static List<String> aboutPlayground = new ArrayList();
+    public static List<String> aboutCurrPeople = new ArrayList();
+    public static List<String> aboutMaxPeople = new ArrayList();
+    public static List<String> aboutTime = new ArrayList();
+    public static List<String> aboutUserHeadImage = new ArrayList();
+    public static List<String> aboutIsJoin = new ArrayList();
+
+    public static List<Bitmap> aboutHeadBitmap = new ArrayList();
 
 }

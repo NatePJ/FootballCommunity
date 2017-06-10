@@ -99,8 +99,8 @@ public class PublishFootballActivity extends Activity{
             @Override
             public void onClick(View view) {
                 UploadUtility.uploadFootballMessage(upPhotoPath,mEditText.getText().toString());
-                Intent i = new Intent(PublishFootballActivity.this,ParentActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(PublishFootballActivity.this,ParentActivity.class);
+//                startActivity(i);
             }
         });
 
@@ -199,49 +199,5 @@ public class PublishFootballActivity extends Activity{
             adapter = new AddPictureAdapter(getApplicationContext(), data, mGridView);
             mGridView.setAdapter(adapter);
         }
-    }
-
-    public void uploadFootballTime(){
-/**
- * 上传图片
- */
-        /*********do something ...... ********/
-        /***************上传部分***************/
-        /*********do something ...... ********/
-                /*上传部分*/
-        //找到上传的靶文件
-        File file1 = new File("/data/user/0/com.bp.footballcommunity/files/headimage6.png");
-//        File file = new File("/storage/emulated/0/Pictures/headimage6.png");
-        File file = new File(upPhotoPath);
-        String fileName = file.getName();
-        Log.d(TAG, fileName);
-        //封装待发送参数（以键值对形式），即靶文件，内容类型设置为multipart/form-data
-        RequestParams params = new RequestParams();
-        try {
-            params.put("file", file, "multipart/form-data");
-            params.put("footballMessageText",mEditText.getText());
-            params.put("filename",fileName);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        AsyncHttpClient uploader = new AsyncHttpClient();
-
-        //这次是post请求，看清楚，多了第二个参数params，其实也就是被封装的靶文件啦
-        //这次使用的响应体接收者是AsyncHttpResponseHandler，回调处理也简单，就是现实上传成功与否
-        uploader.post("http://192.168.137.1:8080/SSHProject/uploadpicture", params,
-                new AsyncHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-                        Log.d(TAG, "upload success");
-                    }
-                    @Override
-                    public void onFailure(int arg0, Header[] arg1, byte[] arg2, Throwable arg3) {
-                        Log.d(TAG, "upload failure");
-
-                    }
-                });
-        /**
-         * 上传图片
-         */
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="football_field">
+        <item>温布利球场</item>
+        <item>伯纳乌球场</item>
+        <item>诺坎普体育场</item>
+        <item>老特拉福德球场</item>
+        <item>安联球场</item>
+        <item>梅阿查球场</item>
+        <item>酋长球场</item>
+        <item>安菲尔德球场</item>
+        <item>马拉卡纳球场</item>
+        <item>糖果盒球场</item>
+    </string-array>
+</resources>

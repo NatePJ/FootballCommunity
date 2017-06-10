@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.bp.footballcommunity.PageFragment;
 import com.bp.footballcommunity.R;
 import com.bp.footballcommunity.adapters.ParentFragmentPagerAdapter;
+import com.bp.footballcommunity.fragments.CreateAboutFootballFragment;
 import com.bp.footballcommunity.fragments.FocusFragment;
 
 
@@ -30,6 +32,7 @@ public class ParentActivity extends AppCompatActivity{
     private Toolbar mToolbar = null;
     private TabLayout mTabLayout = null;
     private ViewPager mViewPager = null;
+    public static final String DIALOG_DATE = "date";
     private ParentFragmentPagerAdapter mParentFragmentPagerAdapter;
 
 
@@ -108,7 +111,10 @@ public class ParentActivity extends AppCompatActivity{
             case R.id.action_settings:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
-                Toast.makeText(this,"hello",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this,"hello",Toast.LENGTH_SHORT).show();
+                FragmentManager fm = ParentActivity.this.getSupportFragmentManager();
+                CreateAboutFootballFragment dialog = new CreateAboutFootballFragment();
+                dialog.show(fm,DIALOG_DATE);
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

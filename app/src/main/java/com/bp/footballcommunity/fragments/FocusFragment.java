@@ -133,8 +133,11 @@ public class FocusFragment extends Fragment {
             /**
              * 开启线程
              */
+            Log.d("NoMessage:","1");
             mFocusThread = new FocusThread();
+            Log.d("NoMessage:","2");
             mFocusThread.start();
+            Log.d("NoMessage:","3");
             /**
              * 初始化列表
              */
@@ -194,6 +197,8 @@ public class FocusFragment extends Fragment {
                                 );
                     }
                     mItemFocuses = NewsToItemFocus.newsToItemFocus(mNewsFocuses);
+
+//                    JsonToList.deleteFocusArryList();
                     /**
                      * 设置适配器
                      */

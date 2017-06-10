@@ -8,8 +8,8 @@
     </item>
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_profile"
-        app:showAsAction="never"
-        android:title="Profile">
+        android:icon="@drawable/go_to_publish"
+        app:showAsAction="ifRoom"
+        android:title="Compose">
     </item>
 </menu>
